@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/prepare">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Расставьте корабли и после нажмите на кнопку Готово."
+        android:textSize="18sp"
+        android:paddingHorizontal="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Чтобы отметить клетку, которая занята кораблём, нажмите на неё - она отметится кружком."
+        android:textSize="18sp"
+        android:paddingHorizontal="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Чтобы освободить клетку от корабля, нажмите на неё."
+        android:textSize="18sp"
+        android:paddingHorizontal="10dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:text="Готово"
+        android:onClick="start_game"/>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/prepare_view"
+        android:orientation="vertical">
+        </LinearLayout >
+</LinearLayout>
