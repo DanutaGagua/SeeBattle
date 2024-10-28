@@ -66,14 +66,12 @@ class Cell implements Serializable {
         private int x = 0;
         private int y = 0;
 
-        Listener(int x, int y)
-        {
+        Listener(int x, int y)        {
             this.x = x;
             this.y = y;
         }
 
-        public void onClick(View view)
-        {
+        public void onClick(View view)        {
             if (isChangedFlag){
                 switch (state){
                     case "water": setState("ship"); break;

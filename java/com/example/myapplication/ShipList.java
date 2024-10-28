@@ -2,18 +2,10 @@ package danuta.gagua.seabattlegame;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class ShipList implements Serializable {
     private ArrayList<Ship> shipList;
     private int maxLength, size;
-
-//    Logger log = Logger.getLogger(AllShips.class.getName());
-
-    ShipList(int maxLength) {
-        this.maxLength = maxLength;
-        shipList = new ArrayList<>();
-    }
 
     ShipList(int maxLength, int size) {
         this.maxLength = maxLength;
@@ -23,10 +15,8 @@ public class ShipList implements Serializable {
 
     boolean addShip(Ship ship) {
         if (shipList.contains(ship) || shipList.size() == maxLength) {
-//            log.info("Ship maxlength");
             return false;
         } else {
-//            log.info("Ship added");
             shipList.add(ship);
 
             return true;
@@ -51,7 +41,7 @@ public class ShipList implements Serializable {
 
     boolean checkShipsEnvironment(Field field){
         for (Ship ship: shipList){
-            if (!ship.checkEnviroment(field)){
+            if (!ship.checkEnvironment(field)){
                 return false;
             }
         }
@@ -68,8 +58,6 @@ public class ShipList implements Serializable {
     }
 
     String returnStateFromCell(Cell cell){
-        Logger log = Logger.getLogger(AllShips.class.getName());
-
         for (Ship ship: shipList) {
             if (ship.getCells().contains(cell)) {
                 int length = 0;
@@ -84,9 +72,7 @@ public class ShipList implements Serializable {
 
                 if (length == ship.getLength()){
                     for (Cell currentCell: ship.getCells()){
-                        if (currentCell.equals(cell)){
-                            currentCell.setState("done");
-                        }
+                        currentCell.setState("done");
                     }
 
                     return "done";
@@ -97,5 +83,15 @@ public class ShipList implements Serializable {
         }
 
         return "fire";
+    }
+
+    public Ship getKilledShip(){
+        for (Ship ship: shipList) {
+            if (ship.getCells().get(0).getState().equals("done")) {
+                return ship;
+            }
+        }
+
+        return null;
     }
 }
