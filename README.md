@@ -1,3 +1,3 @@
 # SeeBattle
-the best game for your android smartfone.
-need some work
+the best game for your android smartfone.  
+need refactoring and improving multiplayer
