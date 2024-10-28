@@ -17,6 +17,15 @@
         style="@style/SimpleTextTheme"
         android:text="Чтобы освободить клетку от корабля, нажмите на неё." />
 
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/field_view"
+        android:layout_gravity="center"
+        android:paddingVertical="30dp">
+    </TableLayout >
+
     <Button
         android:layout_width="100dp"
         android:layout_height="45dp"
@@ -24,12 +33,4 @@
         android:textSize="18sp"
         android:text="Готово"
         android:onClick="start_game"/>
-
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/field_view"
-        android:layout_gravity="center">
-    </TableLayout >
 </LinearLayout>
