@@ -1,10 +1,4 @@
-
-
-/*
- * Game Server class
- *
- * realisation is as simple as can
-* */
+//package com.example.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

@@ -1,3 +1,5 @@
+//package com.example.server;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,6 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WorkerRunnable implements  Runnable {
     // concurrent map <name of client, client ip>
     private static ConcurrentHashMap<String, String> clients = new ConcurrentHashMap<String, String>();
+
+    private static int x = -1, y = -1;
+    private static String answer = "none";
 
     Socket socket;
     DataInputStream inStream;
@@ -52,17 +57,19 @@ public class WorkerRunnable implements  Runnable {
     // put in outStream the all clients
     // format of output is : count of pairs (let its N) pair<Name, Address> * n
     private void giveClients() throws IOException {
-        outStream.writeInt(clients.size());
+        outStream.writeUTF(Integer.toString( clients.size() ));
+        outStream.flush();
 
         for (Map.Entry<String, String> client : clients.entrySet()) {
-            outStream.writeInt(client.getKey().length());
-            outStream.writeBytes(client.getKey());
 
-            outStream.writeInt(client.getValue().length());
-            outStream.writeBytes(client.getValue());
+            if (client.getValue() == socket.getInetAddress().getHostAddress()) continue;
+
+            outStream.writeUTF(client.getKey());
+            outStream.flush();
+
+            outStream.writeUTF(client.getValue());
+            outStream.flush();
         }
-
-        outStream.flush();
     }
 
     public void run() {
@@ -83,12 +90,7 @@ public class WorkerRunnable implements  Runnable {
                     byte[] nameBytes = inStream.readNBytes(nameSize);
 
                     String name = new String(nameBytes);
-
-                    int ipSize = inStream.readInt();
-                    byte[] ipBytes;
-                    ipBytes = inStream.readNBytes(ipSize);
-
-                    String address = new String(ipBytes);
+                    String address = new String(socket.getInetAddress().getHostAddress());
 
                     System.out.println("server: connect: got pair (" + name + ", " + address + ")");
 
@@ -118,6 +120,40 @@ public class WorkerRunnable implements  Runnable {
                 // update == return list of connections
                 case 'u':
                     giveClients();
+                    break;
+
+                case 'w':
+                    x = inStream.readInt();
+                    y = inStream.readInt();
+
+                    System.out.println("coords: (" + x + ", " + y + ")");
+                    break;
+
+                case 'g':
+                    outStream.writeInt(x);
+                    outStream.writeInt(y);
+                    outStream.flush();
+
+                    System.out.println("get coords: (" + x + ", " + y + ")");
+
+                    x = -1;
+                    y = -1;
+                    break;
+
+                case 's':
+                    answer = inStream.readUTF();
+                    System.out.println("get answer: " + answer);
+                    break;
+
+                case 'a':
+                    outStream.writeUTF(answer);
+                    outStream.flush();
+
+                    if (!answer.equals("none")){
+                        System.out.println("send answer: " + answer);
+                    }
+
+                    answer = "none";
                     break;
             }
 
