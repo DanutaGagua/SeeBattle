@@ -6,25 +6,16 @@
     android:id="@+id/prepare">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Расставьте корабли и после нажмите на кнопку Готово."
-        android:textSize="18sp"
-        android:paddingHorizontal="10dp"/>
+        style="@style/SimpleTextTheme"
+        android:text="Расставьте корабли и после нажмите на кнопку Готово." />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Чтобы отметить клетку, которая занята кораблём, нажмите на неё - она отметится кружком."
-        android:textSize="18sp"
-        android:paddingHorizontal="10dp"/>
+        style="@style/SimpleTextTheme"
+        android:text="Чтобы отметить клетку, которая занята кораблём, нажмите на неё - она отметится кружком." />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Чтобы освободить клетку от корабля, нажмите на неё."
-        android:textSize="18sp"
-        android:paddingHorizontal="10dp"/>
+        style="@style/SimpleTextTheme"
+        android:text="Чтобы освободить клетку от корабля, нажмите на неё." />
 
     <Button
         android:layout_width="100dp"
@@ -34,10 +25,11 @@
         android:text="Готово"
         android:onClick="start_game"/>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/prepare_view"
-        android:orientation="vertical">
-        </LinearLayout >
+        android:id="@+id/field_view"
+        android:layout_gravity="center">
+    </TableLayout >
 </LinearLayout>

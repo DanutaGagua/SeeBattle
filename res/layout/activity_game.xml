@@ -13,40 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
-        android:background="@color/colorAccent"
+        android:background="@color/colorTitleBackground"
         android:padding="50dp">
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Если хотите подключиться к серверу другого игрока, напишите его IP."
+            android:layout_gravity="center"
             android:textSize="18sp"
-            android:paddingHorizontal="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Если нет, напишите 127.0.0.1"
-            android:textSize="18sp"
-            android:paddingHorizontal="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Для того, чтобы начать игру, нажмите кнопку Подсоединиться к серверу."
-            android:textSize="18sp"
-            android:paddingHorizontal="10dp"/>
-
-        <include layout="@layout/ip" />
-
+            android:text="Подсоединиться к серверу"
+            android:onClick="connect"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:textSize="18sp"
-            android:text="Подсоединиться к серверу"
-            android:onClick="connect"/>
+            android:text="Перейти к игре"
+            android:onClick="go_to_game"/>
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
